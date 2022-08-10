@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { memo, Suspense } from 'react'
+import {Provider} from 'react-redux'
+import { useRoutes,HashRouter } from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import routes from '@/router'
+import store from '@/store'
+
+import JXAppHeader from '@/components/app-header'
+import JXAppFooter from '@/components/app-footer'
+import JXAppPlayerBar from '@/pages/player/app-player-bar'
+
+function RouteElement() {
+    const element = useRoutes(routes)
+    return element
 }
 
-export default App;
+export default memo(function App() {
+  return (
+    <Provider store={store}>
+      <HashRouter>
+        <JXAppHeader />
+        <Suspense fallback={<div>page loading</div>}>
+          <RouteElement />
+        </Suspense>
+        <JXAppFooter />
+        <JXAppPlayerBar />
+      </HashRouter>
+    </Provider>
+  )
+})
