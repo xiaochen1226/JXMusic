@@ -33,7 +33,7 @@ export default memo(function JXNewAlbum() {
               [0,1].map(item => {
                 return (<div key={item} className="page">
                   {
-                    newAlbums.slice(item*5,(item + 1) * 5).map(iten => {
+                    newAlbums?.slice(item*5,(item + 1) * 5).map(iten => {
                       return <JXAlbumCover key={iten.id} info={iten} size={100} width={118} bgp='-570px'></JXAlbumCover>
                     })
                   }
