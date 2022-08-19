@@ -27,7 +27,9 @@ export default memo(function JXTopBanner() {
   },[dispatch])
 
   const bannerChange = useCallback((from,to)=>{
-    setCurrentIndex(to)
+    setTimeout(() => {
+      setCurrentIndex(to)
+    }, 0);
   },[])
 
   // 其他业务逻辑
